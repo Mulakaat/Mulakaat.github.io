@@ -48,7 +48,7 @@ function removeVideoStream (evt) {
     let stream = evt.stream;
     stream.stop();
     let remDiv=document.getElementById(stream.getId());
-    remDiv.removeChild(remDiv);
+    remDiv.parentNode.removeChild(remDiv);
     console.log("Remote stream is removed " + stream.getId());
 }
 
@@ -132,9 +132,14 @@ const exitCall=(event)=>{
     console.log(localStream)
     localStream.stop()
     client.leave()
-    const buttons=document.querySelector(".buttons")
-    console.log(buttons)
-    buttons.parentNode.removeChild(buttons)
+    const overall=document.querySelector(".overAll")
+    //console.log(buttons)
+    
+    overall.parentNode.removeChild(overall)
+    const call=document.querySelector(".onCall")
+    call.parentNode.removeChild(call)
+    document.querySelector(".ending").style.display="inline";
+
 }
 document.querySelector(".finish").addEventListener('click',(event)=>{
        exitCall(event) 
